@@ -35,6 +35,10 @@ public class FrameImage {
         return  image.getHeight();
     }
 
+    public FrameImage() {
+        this.name = null;
+        this.image = null;
+    }
     public FrameImage(FrameImage frameImage) {
         image = new BufferedImage(frameImage.getImageWidth(), frameImage.getImageHeight(), frameImage.image.getType());
 

@@ -1,26 +1,150 @@
 package effect;
 
+import effect.Animation;
+import effect.FrameImage;
+
+
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Hashtable;
 
 public class CacheDataLoader {
 
     private static CacheDataLoader instance = null;
+
+    private String framefile = "data/frame.txt";
+    private String animationfile = "data/animation.txt";
+    private String physmapfile = "data/physical_map.txt";
+
+
     private Hashtable<String, FrameImage> frameImages;
-    private  Hashtable<String, Animation> animations;
+    private Hashtable<String, Animation> animations;
+
+    private char[][] phys_map;
+
+
     private CacheDataLoader() {
         frameImages = new Hashtable<String, FrameImage>();
-        animations = new Hashtable<String, Animation>();
     }
 
-    public static CacheDataLoader getInstance() {
+    public static CacheDataLoader getInstance(){
         if(instance == null)
-            instance = new CacheDataLoader();
+            instance  = new CacheDataLoader();
         return instance;
     }
 
-    public void LoadFrame() throws IOException{
+    public void loadData()throws IOException {
+        LoadFrame1();
+        LoadAnimation();
+        LoadPhysMap();
+    }
 
-        frameImages = new Hashtable<String, FrameImage>();
+    public char[][] getPhysicalMap(){
+        return instance.phys_map;
+    }
+
+    public void LoadPhysMap() throws IOException{
+
+        FileReader fr = new FileReader(physmapfile);
+        BufferedReader br = new BufferedReader(fr);
+
+        String line = null;
+
+        line = br.readLine();
+        String str[] = line.split(" ");
+        int numberOfRows = Integer.parseInt(str[0]);
+        int numberOfColumns = Integer.parseInt(str[1]);
+
+
+        instance.phys_map = new char[numberOfRows][numberOfColumns];
+
+        for(int i = 0;i < numberOfRows;i++){
+            line = br.readLine();
+            for(int j = 0;j<numberOfColumns;j++)
+                instance.phys_map[i][j] = line.charAt(j);
+        }
+
+        for(int i = 0;i < numberOfRows;i++){
+
+            for(int j = 0;j<numberOfColumns;j++)
+                System.out.print(" "+instance.phys_map[i][j]);
+
+            System.out.println();
+        }
+
+        br.close();
+
+    }
+    public Animation getAnimation(String name){
+
+        Animation animation = new Animation(instance.animations.get(name));
+        return animation;
+
+    }
+
+    public FrameImage getFrameImage(String name){
+
+        FrameImage frameImage = new FrameImage(instance.frameImages.get(name));
+        return frameImage;
+
+    }
+
+
+
+
+
+
+
+    public void LoadAnimation() throws IOException {
+
+        animations = new Hashtable<String, Animation>();
+
+        FileReader fr = new FileReader(animationfile);
+        BufferedReader br = new BufferedReader(fr);
+
+        String line = null;
+
+        if(br.readLine()==null) {
+            System.out.println("No data");
+            throw new IOException();
+        }
+        else {
+
+            fr = new FileReader(animationfile);
+            br = new BufferedReader(fr);
+
+            while((line = br.readLine()).equals(""));
+            int n = Integer.parseInt(line);
+
+            for(int i = 0;i < n; i ++){
+
+                Animation animation = new Animation();
+
+                while((line = br.readLine()).equals(""));
+                animation.setName(line);
+
+                while((line = br.readLine()).equals(""));
+                String[] str = line.split(" ");
+
+                for(int j = 0;j<str.length;j+=2)
+                    animation.add(getFrameImage(str[j]), Double.parseDouble(str[j+1]));
+
+                instance.animations.put(animation.getName(), animation);
+
+            }
+
+        }
+
+        br.close();
+    }
+
+    public void LoadFrame1() throws IOException{
+
+
 
         FileReader fr = new FileReader(framefile);
         BufferedReader br = new BufferedReader(fr);
@@ -41,7 +165,7 @@ public class CacheDataLoader {
             int n = Integer.parseInt(line);
             String path = null;
             BufferedImage imageData = null;
-            int i2 = 0;
+
             for(int i = 0;i < n; i ++){
 
                 FrameImage frame = new FrameImage();
@@ -49,13 +173,13 @@ public class CacheDataLoader {
                 frame.setName(line);
 
                 while((line = br.readLine()).equals(""));
-                String[] str = line.split(" ");
 
-                boolean refreshImage = (path == null || !path.equals(str[1]));
-                path = str[1];
+
+                boolean refreshImage = (path == null || !path.equals(line));
+                path = line;
 
                 while((line = br.readLine()).equals(""));
-                str = line.split(" ");
+                String[] str = line.split(" ");
                 int x = Integer.parseInt(str[1]);
 
                 while((line = br.readLine()).equals(""));
@@ -85,6 +209,9 @@ public class CacheDataLoader {
         }
 
         br.close();
+        fr.close();
 
     }
+
+
 }

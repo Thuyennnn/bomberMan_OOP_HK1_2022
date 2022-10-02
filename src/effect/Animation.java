@@ -1,6 +1,5 @@
 package effect;
 
-
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
@@ -117,7 +116,7 @@ public class Animation {
 
         ignoreFrames.add(false);
         frameImages.add(frameImage);
-        delayFrames.add(new Double(timeToNextFrame));
+        delayFrames.add(timeToNextFrame);
 
     }
 

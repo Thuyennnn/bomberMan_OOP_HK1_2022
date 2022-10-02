@@ -1,0 +1,477 @@
+
+67
+
+bbm_down1
+data/bomberman.png
+x 0
+y 0
+w 40
+h 60
+
+bbm_down2
+data/bomberman.png
+x 40
+y 0
+w 40 
+h 60
+
+bbm_down3
+data/bomberman.png
+x 81
+y 0
+w 40
+h 60
+
+bbm_down4
+data/bomberman.png
+x 122
+y 0
+w 40
+h 60
+
+bbm_left1
+data/bomberman.png
+x 0
+y 60
+w 40
+h 60
+
+bbm_left2
+data/bomberman.png
+x 40
+y 60
+w 40 
+h 60
+
+bbm_left3
+data/bomberman.png
+x 81
+y 60
+w 40
+h 60
+
+bbm_left4
+data/bomberman.png
+x 122
+y 60
+w 40
+h 60
+
+bbm_up1
+data/bomberman.png
+x 0
+y 120
+w 40
+h 60
+
+bbm_up2
+data/bomberman.png
+x 40
+y 120
+w 40 
+h 60
+
+bbm_up3
+data/bomberman.png
+x 80
+y 120
+w 40
+h 60
+
+bbm_up4
+data/bomberman.png
+x 120
+y 120
+w 40
+h 60
+
+bbm_right1
+data/bomberman.png
+x 0
+y 180
+w 40
+h 60
+
+bbm_right2
+data/bomberman.png
+x 40
+y 180
+w 40 
+h 60
+
+bbm_right3
+data/bomberman.png
+x 81
+y 180
+w 40
+h 60
+
+bbm_right4
+data/bomberman.png
+x 122
+y 180
+w 40
+h 60
+
+betty_down1
+data/betty.png
+x 0
+y 0
+w 48
+h 48
+
+betty_down2
+data/betty.png
+x 48
+y 0
+w 48
+h 48
+
+betty_down3
+data/betty.png
+x 96
+y 0
+w 48
+h 48
+
+betty_down4
+data/betty.png
+x 144
+y 0
+w 48
+h 48
+
+betty_left1
+data/betty.png
+x 0
+y 48
+w 48
+h 48
+
+betty_left2
+data/betty.png
+x 48
+y 48
+w 48
+h 48
+
+betty_left3
+data/betty.png
+x 96
+y 48
+w 48
+h 48
+
+betty_left4
+data/betty.png
+x 144
+y 48
+w 48
+h 48
+
+betty_up1
+data/betty.png
+x 0
+y 96
+w 48
+h 48
+
+betty_up2
+data/betty.png
+x 48
+y 96
+w 48
+h 48
+
+betty_up3
+data/betty.png
+x 96
+y 96
+w 48
+h 48
+
+betty_up4
+data/betty.png
+x 144
+y 96
+w 48
+h 48
+
+betty_right1
+data/betty.png
+x 144
+y 144
+w 48
+h 48
+
+betty_right2
+data/betty.png
+x 0
+y 144
+w 48
+h 48
+
+betty_right3
+data/betty.png
+x 48
+y 144
+w 48
+h 48
+
+betty_right4
+data/betty.png
+x 96
+y 144
+w 48
+h 48
+
+betty_die
+data/betty.png
+x 0
+y 192
+w 48
+h 48
+
+george_down1
+data/george.png
+x 0
+y 0
+w 48
+h 48
+
+george_down2
+data/george.png
+x 48
+y 0
+w 48
+h 48
+
+george_down3
+data/george.png
+x 96
+y 0
+w 48
+h 48
+
+george_down4
+data/george.png
+x 144
+y 0
+w 48
+h 48
+
+george_left1
+data/george.png
+x 0
+y 48
+w 48
+h 48
+
+george_left2
+data/george.png
+x 48
+y 48
+w 48
+h 48
+
+george_left3
+data/george.png
+x 96
+y 48
+w 48
+h 48
+
+george_left4
+data/george.png
+x 144
+y 48
+w 48
+h 48
+
+george_up1
+data/george.png
+x 0
+y 96
+w 48
+h 48
+
+george_up2
+data/george.png
+x 48
+y 96
+w 48
+h 48
+
+george_up3
+data/george.png
+x 96
+y 96
+w 48
+h 48
+
+george_up4
+data/george.png
+x 144
+y 96
+w 48
+h 48
+
+george_right1
+data/george.png
+x 144
+y 144
+w 48
+h 48
+
+george_right2
+data/george.png
+x 0
+y 144
+w 48
+h 48
+
+george_right3
+data/george.png
+x 48
+y 144
+w 48
+h 48
+
+george_right4
+data/george.png
+x 96
+y 144
+w 48
+h 48
+
+george_die
+data/george.png
+x 0
+y 192
+w 48
+h 48
+
+fire1
+data/fire.png
+x 0
+y 0
+w 48
+h 48
+
+fire2
+data/fire.png
+x 48
+y 0
+w 48
+h 48
+
+fire3
+data/fire.png
+x 96
+y 0
+w 48
+h 48
+
+fire4
+data/fire.png
+x 144
+y 0
+w 48
+h 48
+
+fire5
+data/fire.png
+x 192
+y 0
+w 48
+h 48
+
+fire6
+data/fire.png
+x 240
+y 0
+w 48
+h 48
+
+bonus_speed
+data/bonuses.png
+x 0
+y 0
+w 48
+h 48
+
+bonus_bomb
+data/bonuses.png
+x 48
+y 0
+w 48
+h 48
+
+bonus_fire
+data/bonuses.png
+x 96
+y 0
+w 48
+h 48
+
+
+
+tile_grass
+data/tile_grass.png
+x 0
+y 0
+w 60
+h 60
+
+tile_wall
+data/tile_wall.png
+x 0
+y 0
+w 60
+h 60
+
+tile_wood
+data/tile_wood.png
+x 0
+y 0
+w 60
+h 60
+
+bomb1
+data/bomb.png
+x 0
+y 0
+w 42
+h 42
+
+bomb2
+data/bomb.png
+x 42
+y 0
+w 42
+h 42
+
+bomb3
+data/bomb.png
+x 84
+y 0
+w 42
+h 42
+
+bomb4
+data/bomb.png
+x 126
+y 0
+w 42
+h 42
+
+bomb5
+data/bomb.png
+x 168
+y 0
+w 42
+h 42
+
+
+
+
