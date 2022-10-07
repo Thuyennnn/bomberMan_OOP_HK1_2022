@@ -1,19 +1,31 @@
 package gameobject;
 
+import effect.Animation;
 import effect.CacheDataLoader;
+import effect.FrameImage;
+import userInterface.GameFrame;
 
 import java.awt.*;
 
-public class PhysicalMap extends GameObject{
+public class PhysicalMap{
     public char[][] physicalMap;
     private final int tileSize = 60;
 
 
-    public double PosX, PosY;
+    private double PosX, PosY;
+
+    private GameWorld gameWorld;
+    FrameImage wall, wood, grass;
 
     public PhysicalMap(double PosX, double PosY, GameWorld gameWorld) {
-        super(PosX, PosY, gameWorld);
+        this.PosX = PosX;
+        this.PosY = PosY;
         physicalMap = CacheDataLoader.getInstance().getPhysicalMap();
+        wall = new FrameImage(CacheDataLoader.getInstance().getFrameImage("tile_wall"));
+        wood = new FrameImage(CacheDataLoader.getInstance().getFrameImage("tile_wood"));
+        grass = new FrameImage(CacheDataLoader.getInstance().getFrameImage("tile_grass"));
+
+        this.gameWorld = gameWorld;
     }
 
     public int getTileSize() {
@@ -22,63 +34,99 @@ public class PhysicalMap extends GameObject{
 
     public void draw(Graphics2D g2) {
 
+        Camera camera = gameWorld.getCamera();
+
         for (int i = 0; i < physicalMap.length; i++)
             for (int j = 0; j < physicalMap[0].length; j++)
-                if (physicalMap[i][j] != ' ') {
-                    if (physicalMap[i][j] == '#') g2.setColor(Color.gray);
-                    else if (physicalMap[i][j] == '*') g2.setColor(Color.yellow);
-                        g2.fillRect((int) PosX + j * getTileSize(), (int) PosY + i * tileSize, tileSize, tileSize);
+            if(j*tileSize - camera.getPosX() > -60 && j*tileSize - camera.getPosX() < GameFrame.SCREEN_WIDTH
+            && i*tileSize - camera.getPosY() > -60 && i*tileSize - camera.getPosY() < GameFrame.SCREEN_HEIGHT)
+                {
+                    if(physicalMap[i][j] == 'n') continue;
+                    if (physicalMap[i][j] == '#')
+                        wall.draw(g2, (int) (j * tileSize + tileSize / 2 - camera.getPosX()),
+                                (int) (i * tileSize + tileSize / 2 - camera.getPosY()));
+                    else if (physicalMap[i][j] == '*' || physicalMap[i][j] == 'b'
+                            || physicalMap[i][j] == 'f' || physicalMap[i][j] == 's')
+
+                        wood.draw(g2, (int) (j * tileSize + tileSize / 2 - camera.getPosX()),
+                                (int) (i * tileSize + tileSize / 2 - camera.getPosY()));
+                    else
+                        grass.draw(g2, (int) (j * tileSize + tileSize / 2 - camera.getPosX()),
+                                (int) (i * tileSize + tileSize / 2 - camera.getPosY()));
+
                 }
 
     }
 
     public Rectangle haveCollisionWithRightRect(Rectangle rect) {
-        int posY1 = rect.y/tileSize;
-        posY1-=2;
-        int posY2 = (rect.y + rect.height)/tileSize;
-        posY2+=2;
 
-        int posX1 = (rect.x + rect.width)/tileSize;
-        int posX2 = posX1 + 3;
-        if(posX2 >= physicalMap[0].length) posX2 = physicalMap[0].length - 1;
-
-        if(posY1 < 0) posY1 = 0;
-        if(posY2 >= physicalMap.length) posY2 = physicalMap.length - 1;
+        int PosX1 = (rect.x + rect.width) / tileSize;
+        int PosY1 = rect.y / tileSize;
+        int PosY2 = PosY1 + 1;
+        if (PosY2 >= physicalMap.length) PosY2 = physicalMap.length - 1;
 
 
-        for(int x = posX1; x <= posX2; x++){
-            for(int y = posY1; y <= posY2;y++){
-                if(physicalMap[y][x] == '#'){
-                    Rectangle r = new Rectangle((int) (getPosX() + x * tileSize), (int) (getPosY() + y * tileSize), tileSize, tileSize);
-                    if(r.y < rect.y + rect.height - 1 && rect.intersects(r))
-                        return r;
+        for (int y = PosY1; y <= PosY2; y++) {
+            if (physicalMap[y][PosX1] == '#' || physicalMap[y][PosX1] == '*' || physicalMap[y][PosX1] == 'b'
+                || physicalMap[y][PosX1] == 'f' || physicalMap[y][PosX1] == 's') {
+                Rectangle r = new Rectangle(PosX1 * tileSize, y * tileSize, tileSize, tileSize);
+                if (r.intersects(rect) && (r.x + 5 > rect.x + rect.width)) {
+                    return r;
                 }
             }
         }
         return null;
     }
 
-    public Rectangle haveCollisionWithLand(Rectangle rect){
+    public Rectangle haveCollisionWithLeftRect(Rectangle rect) {
 
-        int posX1 = rect.x / tileSize - 2;
-        int posX2 = (rect.x + rect.width) + 2;
+        int PosX1 = rect.x / tileSize;
+        int PosY1 = rect.y / tileSize;
 
-        if(posX1 < 0) posX1 = 0;
-        if(posX2 >= physicalMap[0].length) posX2 = physicalMap[0].length - 1;
-
-        int posY1 = (rect.y + rect.height) / tileSize;
-
-        for(int y = posY1; y < physicalMap.length; y++)
-            for(int x = posX1; x <= posX2; x++) {
-                if(physicalMap[y][x] == '#') {
-                    Rectangle rectTile = new Rectangle((int) (getPosX() + x * tileSize), (int) (getPosY() + y * tileSize), tileSize, tileSize);
-                    if(rect.intersects(rectTile)) return rectTile;
+        for (int y = PosY1; y <= PosY1 + 1; y++) {
+            if (physicalMap[y][PosX1] == '#' || physicalMap[y][PosX1] == '*' || physicalMap[y][PosX1] == 'b'
+                || physicalMap[y][PosX1] == 'f' || physicalMap[y][PosX1] == 's') {
+                Rectangle r = new Rectangle(PosX1 * tileSize, y * tileSize, tileSize, tileSize);
+                if (r.intersects(rect) && (r.x + r.width - 5 < rect.x)) {
+                    return r;
                 }
             }
+        }
         return null;
     }
 
+    public Rectangle haveCollisionWithAboveRect(Rectangle rect) {
 
-    @Override
-    public void Update() {}
+        int PosX1 = rect.x / tileSize;
+        int PosY1 = rect.y / tileSize;
+
+        for (int x = PosX1; x <= PosX1 + 1; x++) {
+            if (physicalMap[PosY1][x] == '#' || physicalMap[PosY1][x] == '*' || physicalMap[PosY1][x] == 'b'
+                || physicalMap[PosY1][x] == 'f' || physicalMap[PosY1][x] == 's') {
+                Rectangle r = new Rectangle(x * tileSize, PosY1 * tileSize, tileSize, tileSize);
+                if (r.intersects(rect) && (r.y + r.height - 5 < rect.y)) {
+                    return r;
+                }
+            }
+        }
+        return null;
+    }
+
+    public Rectangle haveCollisionWithBelowRect(Rectangle rect) {
+
+        int PosX1 = rect.x / tileSize;
+        int PosY1 = (rect.y + rect.height) / tileSize;
+
+        for (int x = PosX1; x <= PosX1 + 1; x++) {
+            if (physicalMap[PosY1][x] == '#' || physicalMap[PosY1][x] == '*' || physicalMap[PosY1][x] == 'b'
+                || physicalMap[PosY1][x] == 'f' || physicalMap[PosY1][x] == 's') {
+                Rectangle r = new Rectangle(x * tileSize, PosY1 * tileSize, tileSize, tileSize);
+                if (r.intersects(rect) && (r.y + 5 > rect.y + rect.height)) {
+                    return r;
+                }
+            }
+        }
+        return null;
+    }
+
 }

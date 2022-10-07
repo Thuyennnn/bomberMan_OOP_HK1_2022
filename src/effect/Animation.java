@@ -6,16 +6,7 @@ import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
-/**
- *
- * @author phamn
- */
 public class Animation {
 
     private String name;
@@ -77,14 +68,6 @@ public class Animation {
         return isRepeated;
     }
 
-    public boolean isIgnoreFrame(int id){
-        return ignoreFrames.get(id);
-    }
-
-    public void setIgnoreFrame(int id){
-        if(id >= 0 && id < ignoreFrames.size())
-            ignoreFrames.set(id, true);
-    }
 
     public void unIgnoreFrame(int id){
         if(id >= 0 && id < ignoreFrames.size())
@@ -120,9 +103,7 @@ public class Animation {
 
     }
 
-    public void setDrawRectFrame(boolean b){
-        drawRectFrame = b;
-    }
+
 
 
     public BufferedImage getCurrentImage(){
@@ -143,12 +124,6 @@ public class Animation {
     }
 
 
-    public boolean isLastFrame(){
-        if(currentFrame == frameImages.size() - 1)
-            return true;
-        else return false;
-    }
-
     private void nextFrame(){
 
         if(currentFrame >= frameImages.size() - 1){
@@ -161,26 +136,6 @@ public class Animation {
 
     }
 
-
-
-    public void flipAllImage(){
-
-        for(int i = 0;i < frameImages.size(); i++){
-
-            BufferedImage image = frameImages.get(i).getImage();
-
-            AffineTransform tx = AffineTransform.getScaleInstance(-1, 1);
-            tx.translate(-image.getWidth(), 0);
-
-            AffineTransformOp op = new AffineTransformOp(tx,
-                    AffineTransformOp.TYPE_BILINEAR);
-            image = op.filter(image, null);
-
-            frameImages.get(i).setImage(image);
-
-        }
-
-    }
 
     public void draw(int x, int y, Graphics2D g2){
 

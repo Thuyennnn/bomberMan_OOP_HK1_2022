@@ -17,23 +17,32 @@ public class InputManager {
     public void processKeyPressed(int keyCode) {
         switch (keyCode) {
             case KeyEvent.VK_A:
-                gameWorld.getBomberman().setSpeedX(-5);
-//                gameWorld.getPhysicalMap().x-=3;
+
+                    gameWorld.getBomberman().setSpeedX(-3 - gameWorld.getBomberman().getSpeedBonus());
+                    gameWorld.getBomberman().setDirection(2);
+
                 break;
             case KeyEvent.VK_S:
-                gameWorld.getBomberman().setSpeedY(5);
-//                gameWorld.getPhysicalMap().y+=3;
+
+                    gameWorld.getBomberman().setSpeedY(3 + gameWorld.getBomberman().getSpeedBonus());
+                    gameWorld.getBomberman().setDirection(1);
+
                 break;
             case KeyEvent.VK_D:
-                gameWorld.getBomberman().setSpeedX(5);
-//                gameWorld.getPhysicalMap().x+=3;
+
+                    gameWorld.getBomberman().setSpeedX(3 + gameWorld.getBomberman().getSpeedBonus());
+                    gameWorld.getBomberman().setDirection(4);
+
+
                 break;
             case KeyEvent.VK_W:
-                gameWorld.getBomberman().setSpeedY(-5);
-//                gameWorld.getPhysicalMap().y-=3;
+
+                    gameWorld.getBomberman().setSpeedY(-3 - gameWorld.getBomberman().getSpeedBonus());
+                    gameWorld.getBomberman().setDirection(3);
+
                 break;
             case KeyEvent.VK_SPACE:
-                System.out.println("press space");
+                gameWorld.getBombsList().addbomb();
                 break;
         }
     }
@@ -53,7 +62,7 @@ public class InputManager {
                 gameWorld.getBomberman().setSpeedY(0);
                 break;
             case KeyEvent.VK_SPACE:
-                System.out.println("Released space");
+
                 break;
         }
     }

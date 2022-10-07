@@ -26,6 +26,8 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
     private Graphics2D buffG2D;
 
     GameWorld gameWorld;
+
+
     public GamePanel() {
         gameWorld = new GameWorld();
         inputManager = new InputManager(gameWorld);
@@ -35,8 +37,11 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
         g.drawImage(buffImg, 0, 0, this);
     }
 
+
+
     public void updateGame() {
         gameWorld.Update();
+
     }
     public void renderGame() {
         if(buffImg == null) {
@@ -48,9 +53,10 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 
         if(buffG2D != null) {
             buffG2D.setColor(Color.white);
-            buffG2D.fillRect(0, 0, GameFrame.SCREEN_WIDTH, GameFrame.SCREEN_HEIGHT);
+//            buffG2D.fillRect(0, 0, GameFrame.SCREEN_WIDTH, GameFrame.SCREEN_HEIGHT);
 
             gameWorld.Render(buffG2D);
+
         }
     }
     public void startGame() {

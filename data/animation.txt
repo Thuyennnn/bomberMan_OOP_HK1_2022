@@ -16,19 +16,19 @@ bomb
 bomb1 200000000 bomb2 200000000 bomb3 200000000 bomb4 200000000 bomb5 200000000
 
 betty_down
-betty_down1 200000000 betty_down2 200000000 betty_down3 200000000 betty_down4 200000000
+betty_down1 200000000 betty_down2 200000000 betty_down3 200000000 betty_down4 200000000 
 
 betty_left
-betty_left1 200000000 betty_left2 200000000 betty_left3 200000000 betty_left4 200000000
+betty_left1 200000000 betty_left2 200000000 betty_left3 200000000 betty_left4 200000000 
 
 betty_up
-betty_up1 200000000 betty_up2 200000000 betty_up3 200000000 betty_up4 200000000
+betty_up1 200000000 betty_up2 200000000 betty_up3 200000000 betty_up4 200000000 
 
 betty_right
-betty_right1 200000000 betty_right2 200000000 betty_right3 200000000 betty_right4 200000000
+betty_right1 200000000 betty_right2 200000000 betty_right3 200000000 betty_right4 200000000 
 
 betty_die
-betty_die 200000000
+betty_die 200000000 
 
 george_down
 george_down1 200000000 george_down2 200000000 george_down3 200000000 george_down4 200000000
@@ -43,13 +43,13 @@ george_right
 george_right1 200000000 george_right2 200000000 george_right3 200000000 george_right4 200000000
 
 george_die
-george_die 200000000
+george_die 100000000
 
 bonus_speed
-bonus_speed 200000000
+bonus_speed 100000000
 
 bonus_bomb
-bonus_bomb 200000000
+bonus_bomb 100000000
 
 bonus_fire
 bonus_fire 200000000
@@ -64,5 +64,5 @@ tile_wood
 tile_wood 200000000
 
 fire
-fire1 200000000 fire2 200000000 fire3 200000000 fire4 200000000 fire5 200000000 fire6 200000000
+fire1 40000000 fire2 40000000 fire3 40000000 fire4 40000000 fire5 40000000 fire6 40000000 
 

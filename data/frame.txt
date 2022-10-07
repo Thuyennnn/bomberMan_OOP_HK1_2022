@@ -355,40 +355,40 @@ fire1
 data/fire.png
 x 0
 y 0
-w 48
-h 48
+w 60
+h 60
 
 fire2
 data/fire.png
-x 48
+x 60
 y 0
-w 48
-h 48
+w 60
+h 60
 
 fire3
 data/fire.png
-x 96
+x 120
 y 0
-w 48
-h 48
+w 60
+h 60
 
 fire4
 data/fire.png
-x 144
+x 180
 y 0
-w 48
-h 48
+w 60
+h 60
 
 fire5
 data/fire.png
-x 192
+x 240
 y 0
-w 48
-h 48
+w 60
+h 60
 
 fire6
 data/fire.png
-x 240
+x 300
 y 0
 w 48
 h 48
@@ -397,22 +397,22 @@ bonus_speed
 data/bonuses.png
 x 0
 y 0
-w 48
-h 48
+w 60
+h 60
 
 bonus_bomb
 data/bonuses.png
-x 48
+x 60
 y 0
-w 48
-h 48
+w 60
+h 60
 
 bonus_fire
 data/bonuses.png
-x 96
+x 120
 y 0
-w 48
-h 48
+w 60
+h 60
 
 
 
