@@ -40,9 +40,10 @@ public class Item {
         this.width = gameWorld.getPhysicalMap().getTileSize();
         this.height = gameWorld.getPhysicalMap().getTileSize();
 
-        this.effectedTime = 5000 * 1000000;
+        this.effectedTime = 10000;
 
         this.effected = false;
+        this.render = true;
 
         bonusBomb = new Animation(CacheDataLoader.getInstance().getAnimation("bonus_bomb"));
         bonusSpeed = new Animation(CacheDataLoader.getInstance().getAnimation("bonus_speed"));
@@ -51,7 +52,10 @@ public class Item {
 
     public void Update() {
         if(effected == true) {
-            if(System.nanoTime() - startTime < effectedTime) {
+
+            if(((System.nanoTime() - startTime) / 1000000) < effectedTime) {
+
+
                 if(type == SPEED_ITEM) {
                     gameWorld.getBomberman().setSpeedBonus(2);
                 }
@@ -63,6 +67,7 @@ public class Item {
                 }
             }
             else {
+
                 if(type == SPEED_ITEM) {
                     gameWorld.getBomberman().setSpeedBonus(0);
                 }
@@ -72,28 +77,56 @@ public class Item {
                 else if(type == FLAME_ITEM) {
                     gameWorld.getFlamesList().MAX_FlAME = 1;
                 }
+
+                ItemsList itemsList = gameWorld.getItemsList();
+                itemsList.remove(this);
+
             }
         }
     }
 
     public void getEffect() {
-        startTime = System.nanoTime();
         effected = true;
+        startTime = System.nanoTime();
+        render = false;
     }
     public void draw(Graphics2D g2) {
 
+//        Camera camera = gameWorld.getCamera();
+//        if(type == SPEED_ITEM) {
+//
+//            bonusSpeed.draw((int) (posX - camera.getPosX()), (int) (posY - camera.getPosY()), g2);
+//        }
+//        else if(type == BOMB_ITEM) {
+//
+//            bonusBomb.draw((int) (posX - camera.getPosX()), (int) (posY - camera.getPosY()), g2);
+//        }
+//        else if(type == FLAME_ITEM) {
+//
+//            bonusFlame.draw((int) (posX - camera.getPosX()), (int) (posY - camera.getPosY()), g2);
+//        }
+        if(render == true)
+            drawBound(g2);
+    }
+
+    public Rectangle getBound() {
+        Rectangle rectangle = new Rectangle();
+
+        rectangle.x = (int) (posX - width / 2);
+        rectangle.y = (int) (posY - height / 2);
+        rectangle.width = (int) width;
+        rectangle.height = (int) height;
+
+        return rectangle;
+    }
+
+    public void drawBound(Graphics2D g2) {
         Camera camera = gameWorld.getCamera();
-        if(type == SPEED_ITEM) {
+        g2.setColor(Color.YELLOW);
+        g2.fillRect((int) (posX - width / 2 - camera.getPosX()), (int) (posY - height / 2 - camera.getPosY()), (int) width, (int) height);
+    }
 
-            bonusSpeed.draw((int) (posX - camera.getPosX()), (int) (posY - camera.getPosY()), g2);
-        }
-        else if(type == BOMB_ITEM) {
-
-            bonusBomb.draw((int) (posX - camera.getPosX()), (int) (posY - camera.getPosY()), g2);
-        }
-        else if(type == FLAME_ITEM) {
-
-            bonusFlame.draw((int) (posX - camera.getPosX()), (int) (posY - camera.getPosY()), g2);
-        }
+    public boolean isRender() {
+        return render;
     }
 }

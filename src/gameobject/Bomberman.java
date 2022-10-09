@@ -54,84 +54,99 @@ public class Bomberman {
 
     public void update() {
 
-        Rectangle currentRect = getBound();
+            if(haveCollisionWithFlame()) state = DIE;
+            if(haveCollisionWithItem());
 
-        currentRect.x += speedX;
-        currentRect.y += speedY;
+            if(state == LIVE) {
+                Rectangle currentRect = getBound();
 
-        if(direction == DIRRECTION_LEFT) {
-            Rectangle leftRect = gameWorld.getPhysicalMap().haveCollisionWithLeftRect(currentRect);
-            if(leftRect != null) setPosX(leftRect.x + leftRect.width + width / 2);
-            else {
-                setPosX(getPosX() + speedX);
-            }
-        }
-        else if(direction == DIRECTION_RIGHT) {
-            Rectangle rightRect = gameWorld.getPhysicalMap().haveCollisionWithRightRect(currentRect);
-            if(rightRect != null) setPosX(rightRect.x - width / 2);
-            else {
-                setPosX(getPosX() + speedX);
-            }
-        }
-        else if(direction == DIRECTION_UP) {
-            Rectangle aboveRect = gameWorld.getPhysicalMap().haveCollisionWithAboveRect(currentRect);
-            if(aboveRect != null) setPosY(aboveRect.y + aboveRect.height + height / 2);
-            else {
-                setPosY(getPosY() + speedY);
-            }
-        }
-        else {
-            Rectangle belowRect = gameWorld.getPhysicalMap().haveCollisionWithBelowRect(currentRect);
-            if(belowRect != null) setPosY(belowRect.y - height / 2);
-            else setPosY(getPosY() + speedY);
-        }
+                currentRect.x += speedX;
+                currentRect.y += speedY;
 
-        if(getSpeedX() == 0 && getSpeedY() == 0) bbmRun = false;
-        else bbmRun = true;
+                if(direction == DIRRECTION_LEFT) {
+                    Rectangle leftRect = gameWorld.getPhysicalMap().haveCollisionWithLeftRect(currentRect);
+                    if(leftRect != null) setPosX(leftRect.x + leftRect.width + width / 2);
+                    else {
+                        setPosX(getPosX() + speedX);
+                    }
+                }
+                else if(direction == DIRECTION_RIGHT) {
+                    Rectangle rightRect = gameWorld.getPhysicalMap().haveCollisionWithRightRect(currentRect);
+                    if(rightRect != null) setPosX(rightRect.x - width / 2);
+                    else {
+                        setPosX(getPosX() + speedX);
+                    }
+                }
+                else if(direction == DIRECTION_UP) {
+                    Rectangle aboveRect = gameWorld.getPhysicalMap().haveCollisionWithAboveRect(currentRect);
+                    if(aboveRect != null) setPosY(aboveRect.y + aboveRect.height + height / 2);
+                    else {
+                        setPosY(getPosY() + speedY);
+                    }
+                }
+                else {
+                    Rectangle belowRect = gameWorld.getPhysicalMap().haveCollisionWithBelowRect(currentRect);
+                    if(belowRect != null) setPosY(belowRect.y - height / 2);
+                    else setPosY(getPosY() + speedY);
+                }
+
+                if(getSpeedX() == 0 && getSpeedY() == 0) bbmRun = false;
+                else bbmRun = true;
+            }
+
     }
 
     public void draw(Graphics2D g2) {
 
         Camera camera = gameWorld.getCamera();
-        if(state == LIVE) {
-            if(bbmRun) {
-                if(direction == DIRECTION_DOWN) {
-
-                    bbmDown.Update(System.nanoTime());
-                    bbmDown.draw((int) (posX - camera.getPosX()), (int) (posY - camera.getPosY()), g2);
-                }
-                else if(direction == DIRRECTION_LEFT) {
-
-                    bbmLeft.Update(System.nanoTime());
-                    bbmLeft.draw((int) (posX - camera.getPosX()), (int) (posY - camera.getPosY()), g2);
-                }
-                else if(direction == DIRECTION_UP) {
-
-                    bbmUp.Update(System.nanoTime());
-                    bbmUp.draw((int) (posX - camera.getPosX()), (int) (posY - camera.getPosY()), g2);
-                }
-                else {
-
-                    bbmRight.Update(System.nanoTime());
-                    bbmRight.draw((int) (posX - camera.getPosX()), (int) (posY - camera.getPosY()), g2);
-                }
-            }
-            else {
-                FrameImage frameImage;
-                if(direction == DIRECTION_DOWN)
-                    frameImage = new FrameImage(CacheDataLoader.getInstance().getFrameImage("betty_down1"));
-                else if(direction == DIRRECTION_LEFT)
-                    frameImage = new FrameImage(CacheDataLoader.getInstance().getFrameImage("betty_left1"));
-                else if(direction == DIRECTION_UP)
-                    frameImage = new FrameImage(CacheDataLoader.getInstance().getFrameImage("betty_up1"));
-                else  frameImage = new FrameImage(CacheDataLoader.getInstance().getFrameImage("betty_right1"));
-
-                frameImage.draw(g2, (int) (posX - camera.getPosX()), (int) (posY - camera.getPosY()));
-            }
-        }
-
-//        g2.setColor(Color.BLACK);
-//        g2.fillRect((int) (posX - width / 2 -camera.getPosX()), (int) (posY - height / 2 - camera.getPosY()), 48, 48);
+//        if(state == LIVE) {
+//            if(bbmRun) {
+//                if(direction == DIRECTION_DOWN) {
+//
+//                    bbmDown.Update(System.nanoTime());
+//                    bbmDown.draw((int) (posX - camera.getPosX()), (int) (posY - camera.getPosY()), g2);
+//                }
+//                else if(direction == DIRRECTION_LEFT) {
+//
+//                    bbmLeft.Update(System.nanoTime());
+//                    bbmLeft.draw((int) (posX - camera.getPosX()), (int) (posY - camera.getPosY()), g2);
+//                }
+//                else if(direction == DIRECTION_UP) {
+//
+//                    bbmUp.Update(System.nanoTime());
+//                    bbmUp.draw((int) (posX - camera.getPosX()), (int) (posY - camera.getPosY()), g2);
+//                }
+//                else {
+//
+//                    bbmRight.Update(System.nanoTime());
+//                    bbmRight.draw((int) (posX - camera.getPosX()), (int) (posY - camera.getPosY()), g2);
+//
+//                }
+//            }
+//            else {
+//                FrameImage frameImage;
+//                if(direction == DIRECTION_DOWN)
+//                    frameImage = new FrameImage(CacheDataLoader.getInstance().getFrameImage("betty_down1"));
+//                else if(direction == DIRRECTION_LEFT)
+//                    frameImage = new FrameImage(CacheDataLoader.getInstance().getFrameImage("betty_left1"));
+//                else if(direction == DIRECTION_UP)
+//                    frameImage = new FrameImage(CacheDataLoader.getInstance().getFrameImage("betty_up1"));
+//                else  frameImage = new FrameImage(CacheDataLoader.getInstance().getFrameImage("betty_right1"));
+//
+//                frameImage.draw(g2, (int) (posX - camera.getPosX()), (int) (posY - camera.getPosY()));
+//
+//
+//            }
+//        }
+//        else {
+//            FrameImage frameImage = new FrameImage(CacheDataLoader.getInstance().getFrameImage("betty_die"));
+//            frameImage.draw(g2, (int) (posX - camera.getPosX()), (int) (posY - camera.getPosY()));
+//
+//        }
+        if(state == LIVE)
+            g2.setColor(Color.BLACK);
+        else g2.setColor(Color.GRAY);
+        g2.fillRect((int) (posX - width / 2 -camera.getPosX()), (int) (posY - height / 2 - camera.getPosY()), 48, 48);
     }
 
     public Rectangle getBound() {
@@ -141,6 +156,34 @@ public class Bomberman {
         rectangle.width = (int) width;
         rectangle.height = (int) height;
         return rectangle;
+    }
+
+    public boolean haveCollisionWithFlame() {
+
+        Rectangle currentRect = getBound();
+        FlamesList flamesList = gameWorld.getFlamesList();
+        for(Flame f : flamesList.getFlamesList()) {
+            Rectangle Rectf = f.getBound();
+
+            if(currentRect.intersects(Rectf)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean haveCollisionWithItem() {
+        Rectangle currentRect = getBound();
+        ItemsList itemsList = gameWorld.getItemsList();
+        for(Item i : itemsList.getItemsList()) {
+            Rectangle Recti = i.getBound();
+            if(i.isRender() == true && currentRect.intersects(Recti)) {
+                i.getEffect();
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public double getPosX() {
@@ -205,5 +248,9 @@ public class Bomberman {
 
     public double getSpeedBonus() {
         return speedBonus;
+    }
+
+    public void setState(int state) {
+        this.state = state;
     }
 }

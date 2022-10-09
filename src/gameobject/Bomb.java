@@ -11,6 +11,8 @@ public class Bomb extends Weapon {
     public Bomb(double posX, double posY, GameWorld gameWorld) {
         super(posX, posY, gameWorld);
         setTimeDelay(1500 * 1000000);
+        setWidth(42);
+        setHeight(42);
         animationBomb = new Animation(CacheDataLoader.getInstance().getAnimation("bomb"));
     }
 

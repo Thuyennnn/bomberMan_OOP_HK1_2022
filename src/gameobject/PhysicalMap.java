@@ -70,7 +70,7 @@ public class PhysicalMap{
             if (physicalMap[y][PosX1] == '#' || physicalMap[y][PosX1] == '*' || physicalMap[y][PosX1] == 'b'
                 || physicalMap[y][PosX1] == 'f' || physicalMap[y][PosX1] == 's') {
                 Rectangle r = new Rectangle(PosX1 * tileSize, y * tileSize, tileSize, tileSize);
-                if (r.intersects(rect) && (r.x + 5 > rect.x + rect.width)) {
+                if (r.intersects(rect) && (r.x + 10 > rect.x + rect.width)) {
                     return r;
                 }
             }
@@ -87,7 +87,7 @@ public class PhysicalMap{
             if (physicalMap[y][PosX1] == '#' || physicalMap[y][PosX1] == '*' || physicalMap[y][PosX1] == 'b'
                 || physicalMap[y][PosX1] == 'f' || physicalMap[y][PosX1] == 's') {
                 Rectangle r = new Rectangle(PosX1 * tileSize, y * tileSize, tileSize, tileSize);
-                if (r.intersects(rect) && (r.x + r.width - 5 < rect.x)) {
+                if (r.intersects(rect) && (r.x + r.width - 10 < rect.x)) {
                     return r;
                 }
             }
@@ -104,7 +104,7 @@ public class PhysicalMap{
             if (physicalMap[PosY1][x] == '#' || physicalMap[PosY1][x] == '*' || physicalMap[PosY1][x] == 'b'
                 || physicalMap[PosY1][x] == 'f' || physicalMap[PosY1][x] == 's') {
                 Rectangle r = new Rectangle(x * tileSize, PosY1 * tileSize, tileSize, tileSize);
-                if (r.intersects(rect) && (r.y + r.height - 5 < rect.y)) {
+                if (r.intersects(rect) && (r.y + r.height - 10 < rect.y)) {
                     return r;
                 }
             }
@@ -121,7 +121,7 @@ public class PhysicalMap{
             if (physicalMap[PosY1][x] == '#' || physicalMap[PosY1][x] == '*' || physicalMap[PosY1][x] == 'b'
                 || physicalMap[PosY1][x] == 'f' || physicalMap[PosY1][x] == 's') {
                 Rectangle r = new Rectangle(x * tileSize, PosY1 * tileSize, tileSize, tileSize);
-                if (r.intersects(rect) && (r.y + 5 > rect.y + rect.height)) {
+                if (r.intersects(rect) && (r.y + 10 > rect.y + rect.height)) {
                     return r;
                 }
             }

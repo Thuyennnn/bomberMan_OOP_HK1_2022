@@ -29,4 +29,8 @@ public class ItemsList {
     public void remove(Item item) {
         itemsList.remove(item);
     }
+
+    public ArrayList<Item> getItemsList() {
+        return itemsList;
+    }
 }

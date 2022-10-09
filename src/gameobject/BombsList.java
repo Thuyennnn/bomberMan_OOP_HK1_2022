@@ -22,7 +22,6 @@ public class BombsList {
             double posY = gameWorld.getBomberman().getPosY();
             Bomb bomb = new Bomb(posX, posY, gameWorld);
             bombsList.add(bomb);
-            System.out.println("added");
             BOMB_SETED ++;
         }
     }
