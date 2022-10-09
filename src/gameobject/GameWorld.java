@@ -18,10 +18,12 @@ public class GameWorld {
     private FlamesList flamesList;
     private ItemsList itemsList;
     private Camera camera;
+    private BossTeam bossTeam;
 
     public GameWorld() {
         physicalMap = new PhysicalMap(0, 0, this);
         bomberman = new Bomberman(84, 84, 48, 48, this);
+        bossTeam = new BossTeam(this);
         bombsList = new BombsList(this);
         flamesList = new FlamesList(this);
         itemsList = new ItemsList(this);
@@ -31,6 +33,7 @@ public class GameWorld {
     public void Update() {
 
         bomberman.update();
+        bossTeam.Update();
         bombsList.Update();
         flamesList.Update();
         camera.Update();
@@ -40,6 +43,7 @@ public class GameWorld {
     public void Render(Graphics2D g2) {
         physicalMap.draw(g2);
         bomberman.draw(g2);
+        bossTeam.Draw(g2);
         bombsList.Draw(g2);
         flamesList.Draw(g2);
         itemsList.draw(g2);
@@ -61,4 +65,7 @@ public class GameWorld {
 
     public Camera getCamera() {return camera;}
 
+    public BossTeam getBossTeam() {
+        return bossTeam;
+    }
 }

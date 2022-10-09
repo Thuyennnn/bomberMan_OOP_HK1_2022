@@ -20,7 +20,7 @@ public class Flame extends Weapon {
     public boolean update() {
         if(System.nanoTime() - getTimeStart() > getTimeDelay()) {
             unSeted();
-            gameWorld.getFlamesList().removeFlame(this);
+            getGameWorld().getFlamesList().removeFlame(this);
             return true;
         }else {
 //            Rectangle bbmBound = gameWorld.getBomberman().getBound();
@@ -40,8 +40,8 @@ public class Flame extends Weapon {
     public void draw(Graphics2D g2) {
         if(IsSeted() == true)
         {
-            Camera camera = gameWorld.getCamera();
-            int tileSize = gameWorld.getPhysicalMap().getTileSize();
+            Camera camera = getGameWorld().getCamera();
+            int tileSize = getGameWorld().getPhysicalMap().getTileSize();
             animationFlame.Update(System.nanoTime());
             animationFlame.draw((int) (getPosX() - camera.getPosX()), (int) (getPosY() - camera.getPosY()), g2);
 
@@ -49,20 +49,8 @@ public class Flame extends Weapon {
         }
     }
 
-    public Rectangle getBound() {
-
-        Rectangle rectangle = new Rectangle();
-
-        rectangle.x = (int) (getPosX() - getWidth() / 2);
-        rectangle.y = (int) (getPosY() - getHeight() / 2);
-        rectangle.width = (int) getWidth();
-        rectangle.height = (int) getHeight();
-
-        return rectangle;
-    }
-
     public void drawBound(Graphics2D g2) {
-        Camera camera = gameWorld.getCamera();
+        Camera camera = getGameWorld().getCamera();
         Rectangle r = getBound();
         g2.setColor(Color.RED);
 //

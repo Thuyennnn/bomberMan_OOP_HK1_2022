@@ -6,14 +6,8 @@ import effect.FrameImage;
 
 import java.awt.*;
 
-public class Item {
-    private double posX;
-    private double posY;
+public class Item extends GameObject{
 
-    private double width;
-    private double height;
-
-    GameWorld gameWorld;
 
     private char type;
 
@@ -30,15 +24,11 @@ public class Item {
     Animation bonusBomb, bonusSpeed, bonusFlame;
 
     public Item(char type, double posX, double posY, GameWorld gameWorld) {
+        super(posX, posY, gameWorld);
         this.type = type;
 
-        this.posX = posX;
-        this.posY = posY;
-
-        this.gameWorld = gameWorld;
-
-        this.width = gameWorld.getPhysicalMap().getTileSize();
-        this.height = gameWorld.getPhysicalMap().getTileSize();
+        setWidth(gameWorld.getPhysicalMap().getTileSize());
+        setHeight(gameWorld.getPhysicalMap().getTileSize());
 
         this.effectedTime = 10000;
 
@@ -57,28 +47,28 @@ public class Item {
 
 
                 if(type == SPEED_ITEM) {
-                    gameWorld.getBomberman().setSpeedBonus(2);
+                    getGameWorld().getBomberman().setSpeedBonus(2);
                 }
                 else if(type == BOMB_ITEM) {
-                    gameWorld.getBombsList().MAX_BOMB = 2;
+                    getGameWorld().getBombsList().MAX_BOMB = 2;
                 }
                 else if(type == FLAME_ITEM) {
-                    gameWorld.getFlamesList().MAX_FlAME = 2;
+                    getGameWorld().getFlamesList().MAX_FlAME = 2;
                 }
             }
             else {
 
                 if(type == SPEED_ITEM) {
-                    gameWorld.getBomberman().setSpeedBonus(0);
+                    getGameWorld().getBomberman().setSpeedBonus(0);
                 }
                 else if(type == BOMB_ITEM) {
-                    gameWorld.getBombsList().MAX_BOMB = 1;
+                    getGameWorld().getBombsList().MAX_BOMB = 1;
                 }
                 else if(type == FLAME_ITEM) {
-                    gameWorld.getFlamesList().MAX_FlAME = 1;
+                    getGameWorld().getFlamesList().MAX_FlAME = 1;
                 }
 
-                ItemsList itemsList = gameWorld.getItemsList();
+                ItemsList itemsList = getGameWorld().getItemsList();
                 itemsList.remove(this);
 
             }
@@ -92,38 +82,30 @@ public class Item {
     }
     public void draw(Graphics2D g2) {
 
-//        Camera camera = gameWorld.getCamera();
-//        if(type == SPEED_ITEM) {
-//
-//            bonusSpeed.draw((int) (posX - camera.getPosX()), (int) (posY - camera.getPosY()), g2);
-//        }
-//        else if(type == BOMB_ITEM) {
-//
-//            bonusBomb.draw((int) (posX - camera.getPosX()), (int) (posY - camera.getPosY()), g2);
-//        }
-//        else if(type == FLAME_ITEM) {
-//
-//            bonusFlame.draw((int) (posX - camera.getPosX()), (int) (posY - camera.getPosY()), g2);
-//        }
-        if(render == true)
-            drawBound(g2);
+        if(render == true) {
+            Camera camera = getGameWorld().getCamera();
+            if(type == SPEED_ITEM) {
+
+                bonusSpeed.draw((int) (getPosX() - camera.getPosX()), (int) (getPosY() - camera.getPosY()), g2);
+            }
+            else if(type == BOMB_ITEM) {
+
+                bonusBomb.draw((int) (getPosX() - camera.getPosX()), (int) (getPosY() - camera.getPosY()), g2);
+            }
+            else if(type == FLAME_ITEM) {
+
+                bonusFlame.draw((int) (getPosX() - camera.getPosX()), (int) (getPosY() - camera.getPosY()), g2);
+            }
+        }
+//        if(render == true)
+//            drawBound(g2);
     }
 
-    public Rectangle getBound() {
-        Rectangle rectangle = new Rectangle();
-
-        rectangle.x = (int) (posX - width / 2);
-        rectangle.y = (int) (posY - height / 2);
-        rectangle.width = (int) width;
-        rectangle.height = (int) height;
-
-        return rectangle;
-    }
 
     public void drawBound(Graphics2D g2) {
-        Camera camera = gameWorld.getCamera();
+        Camera camera = getGameWorld().getCamera();
         g2.setColor(Color.YELLOW);
-        g2.fillRect((int) (posX - width / 2 - camera.getPosX()), (int) (posY - height / 2 - camera.getPosY()), (int) width, (int) height);
+        g2.fillRect((int) (getPosX() - getWidth() / 2 - camera.getPosX()), (int) (getPosY() - getHeight() / 2 - camera.getPosY()), (int) getWidth(), (int) getHeight());
     }
 
     public boolean isRender() {

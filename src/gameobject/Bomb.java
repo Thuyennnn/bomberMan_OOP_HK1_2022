@@ -21,8 +21,8 @@ public class Bomb extends Weapon {
         long currentTime = System.nanoTime();
         if(currentTime - getTimeStart() > getTimeDelay()) {
             unSeted();
-            gameWorld.getFlamesList().add(this);
-            gameWorld.getBombsList().removeBomb(this);
+            getGameWorld().getFlamesList().add(this);
+            getGameWorld().getBombsList().removeBomb(this);
             return true;
         }
 
@@ -31,7 +31,7 @@ public class Bomb extends Weapon {
     @Override
     public void draw(Graphics2D g2) {
         if(IsSeted() == true) {
-            Camera camera = gameWorld.getCamera();
+            Camera camera = getGameWorld().getCamera();
             animationBomb.Update(System.nanoTime());
             animationBomb.draw((int) (getPosX() - camera.getPosX()), (int) (getPosY() - camera.getPosY()), g2);
         }

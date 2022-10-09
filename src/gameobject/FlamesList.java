@@ -23,7 +23,7 @@ public class FlamesList {
         if (physicalMap.physicalMap[x][y] != '#') {
             Flame flame = new Flame(bomb.getPosX() + xi * tilteSize, bomb.getPosY() + yi * tilteSize, gameWorld);
             flamesList.add(flame);
-            System.out.println((bomb.getPosX() + xi * tilteSize) + " " + (bomb.getPosY() + yi * tilteSize)) ;
+//            System.out.println((bomb.getPosX() + xi * tilteSize) + " " + (bomb.getPosY() + yi * tilteSize)) ;
             if (physicalMap.physicalMap[x][y] != ' ') {
                 if (physicalMap.physicalMap[x][y] == '*')
                     physicalMap.physicalMap[x][y] = ' ';
@@ -31,18 +31,6 @@ public class FlamesList {
                         || physicalMap.physicalMap[x][y] == 's') {
                     Item item = new Item(physicalMap.physicalMap[x][y], bomb.getPosX() + xi * tilteSize, bomb.getPosY() + yi * tilteSize, gameWorld);
                     gameWorld.getItemsList().add(item);
-
-//                    switch (physicalMap.physicalMap[x][y]) {
-//                        case 'b':
-//                            physicalMap.physicalMap[x][y] = 'B';
-//                            break;
-//                        case 'f':
-//                            physicalMap.physicalMap[x][y] = 'F';
-//                            break;
-//                        case 's':
-//                            physicalMap.physicalMap[x][y] = 'S';
-//                            break;
-//                    }
                     physicalMap.physicalMap[x][y] = ' ';
                 }
                 return false;
@@ -83,7 +71,7 @@ public class FlamesList {
 
         Flame flame = new Flame(bomb.getPosX(), bomb.getPosY(), gameWorld);
         flamesList.add(flame);
-        System.out.println((bomb.getPosX()) + " " + (bomb.getPosY()));
+//        System.out.println((bomb.getPosX()) + " " + (bomb.getPosY()));
     }
 
     public void removeFlame(Flame flame) {

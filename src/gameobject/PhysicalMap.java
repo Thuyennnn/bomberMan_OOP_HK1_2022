@@ -41,7 +41,7 @@ public class PhysicalMap{
             if(j*tileSize - camera.getPosX() > -60 && j*tileSize - camera.getPosX() < GameFrame.SCREEN_WIDTH
             && i*tileSize - camera.getPosY() > -60 && i*tileSize - camera.getPosY() < GameFrame.SCREEN_HEIGHT)
                 {
-                    if(physicalMap[i][j] == 'n') continue;
+
                     if (physicalMap[i][j] == '#')
                         wall.draw(g2, (int) (j * tileSize + tileSize / 2 - camera.getPosX()),
                                 (int) (i * tileSize + tileSize / 2 - camera.getPosY()));
