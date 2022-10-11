@@ -5,7 +5,6 @@ import effect.CacheDataLoader;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyListener;
 import java.io.IOException;
 
 public class GameFrame extends JFrame {
