@@ -69,6 +69,7 @@ public abstract class Weapon extends GameObject {
     public long getTimeDelay() {
         return timeDelay;
     }
-
-
 }
+
+
+

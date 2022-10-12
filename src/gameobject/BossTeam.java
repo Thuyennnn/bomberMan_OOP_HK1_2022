@@ -19,7 +19,9 @@ public class BossTeam {
     }
 
     public void remove(Boss boss) {
+
         bossTeam.remove(boss);
+        System.out.println("xoa boss");
     }
 
     public void Update() {
@@ -45,6 +47,7 @@ public class BossTeam {
                     int tileSize = gameWorld.getPhysicalMap().getTileSize();
                     Boss boss = new Boss(i * tileSize + tileSize / 2, j * tileSize + tileSize / 2, 40, 50, gameWorld);
                     bossTeam.add(boss);
+                    System.out.println("them boss");
                     physicalMap[j][i] = ' ';
                 }
             }

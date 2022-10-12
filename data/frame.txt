@@ -1,5 +1,5 @@
 
-67
+69
 
 bbm_down1
 data/bomberman.png
@@ -472,6 +472,16 @@ y 0
 w 42
 h 42
 
+bg
+data/bg.png
+x 0
+y 0
+w 512
+h 512
 
-
-
+bg2
+data/bg2.png
+x 0
+y 0
+w 600
+h 166

@@ -1,0 +1,4 @@
+2
+
+bomb data/sound_bomb.mp3
+bgg data/sound_game.mp3

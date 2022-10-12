@@ -20,7 +20,8 @@ public class PhysicalMap{
     public PhysicalMap(double PosX, double PosY, GameWorld gameWorld) {
         this.PosX = PosX;
         this.PosY = PosY;
-        physicalMap = CacheDataLoader.getInstance().getPhysicalMap();
+        physicalMap = new char[13][31];
+        getMap();
         wall = new FrameImage(CacheDataLoader.getInstance().getFrameImage("tile_wall"));
         wood = new FrameImage(CacheDataLoader.getInstance().getFrameImage("tile_wood"));
         grass = new FrameImage(CacheDataLoader.getInstance().getFrameImage("tile_grass"));
@@ -28,6 +29,14 @@ public class PhysicalMap{
         this.gameWorld = gameWorld;
     }
 
+    public void getMap() {
+        char[][]physMap = CacheDataLoader.getInstance().getPhysicalMap();
+
+        for(int i = 0; i < physMap.length; i++)
+            for(int j = 0; j < physMap[0].length; j++) {
+                physicalMap[i][j] = physMap[i][j];
+            }
+    }
     public int getTileSize() {
         return tileSize;
     }

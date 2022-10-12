@@ -22,7 +22,7 @@ public class Boss extends Human{
         bossDown = new Animation(CacheDataLoader.getInstance().getAnimation("bbm_down"));
         bossLeft = new Animation(CacheDataLoader.getInstance().getAnimation("bbm_left"));
         bossRight = new Animation(CacheDataLoader.getInstance().getAnimation("bbm_right"));
-
+        setHumanRun(true);
     }
 
     public void update() {

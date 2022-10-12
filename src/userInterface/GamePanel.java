@@ -3,9 +3,9 @@ package userInterface;
 import effect.Animation;
 import effect.CacheDataLoader;
 import effect.FrameImage;
-import gameobject.Bomberman;
-import gameobject.GameWorld;
-import gameobject.PhysicalMap;
+import gameobject.*;
+import gameobject.Menu;
+
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -25,13 +25,14 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
     private BufferedImage buffImg;
     private Graphics2D buffG2D;
 
-    GameWorld gameWorld;
+    State state;
 
 
     public GamePanel() {
-        gameWorld = new GameWorld();
-        inputManager = new InputManager(gameWorld);
+        state = new State();
+        inputManager = new InputManager(state);
         buffImg = new BufferedImage(GameFrame.SCREEN_WIDTH, GameFrame.SCREEN_HEIGHT, BufferedImage.TYPE_INT_ARGB);
+
     }
     public void  paint(Graphics g) {
         g.drawImage(buffImg, 0, 0, this);
@@ -40,7 +41,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 
 
     public void updateGame() {
-        gameWorld.Update();
+        state.update();
 
     }
     public void renderGame() {
@@ -52,10 +53,10 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
         }
 
         if(buffG2D != null) {
-            buffG2D.setColor(Color.white);
+//            buffG2D.setColor(Color.white);
 //            buffG2D.fillRect(0, 0, GameFrame.SCREEN_WIDTH, GameFrame.SCREEN_HEIGHT);
 
-            gameWorld.Render(buffG2D);
+            state.render(buffG2D);
 
         }
     }
@@ -110,4 +111,8 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
     public void keyReleased(KeyEvent e) {
         inputManager.processKeyRelease(e.getKeyCode());
     }
+
+
+
+
 }

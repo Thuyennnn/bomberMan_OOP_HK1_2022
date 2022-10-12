@@ -1,16 +1,17 @@
 package effect;
 
-import effect.Animation;
-import effect.FrameImage;
-
 
 import javax.imageio.ImageIO;
+
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Hashtable;
+
 
 public class CacheDataLoader {
 
@@ -19,6 +20,7 @@ public class CacheDataLoader {
     private String framefile = "data/frame.txt";
     private String animationfile = "data/animation.txt";
     private String physmapfile = "data/physical_map.txt";
+    private String soundfile = "data/sounds.txt";
 
 
     private Hashtable<String, FrameImage> frameImages;

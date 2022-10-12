@@ -1,8 +1,10 @@
 package gameobject;
 
 import userInterface.GameFrame;
+import userInterface.GamePanel;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 public class GameWorld {
@@ -20,7 +22,10 @@ public class GameWorld {
     private Camera camera;
     private BossTeam bossTeam;
 
-    public GameWorld() {
+
+
+    public GameWorld()  {
+
         physicalMap = new PhysicalMap(0, 0, this);
         bomberman = new Bomberman(84, 84, 48, 48, this);
         bossTeam = new BossTeam(this);
@@ -28,6 +33,7 @@ public class GameWorld {
         flamesList = new FlamesList(this);
         itemsList = new ItemsList(this);
         camera = new Camera(0,0, this);
+
     }
 
     public void Update() {
@@ -41,6 +47,7 @@ public class GameWorld {
     }
 
     public void Render(Graphics2D g2) {
+
         physicalMap.draw(g2);
         bomberman.draw(g2);
         bossTeam.Draw(g2);
@@ -68,4 +75,5 @@ public class GameWorld {
     public BossTeam getBossTeam() {
         return bossTeam;
     }
+
 }
