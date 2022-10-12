@@ -3,7 +3,7 @@ Bài tập lớn OOP Nhóm 18 - Bomberman Game
 Game được mô phỏng theo trò chơi bomberman
  
 
- 
+
 
 
 
@@ -15,9 +15,12 @@ Luật chơi:
 
 
 -	Vũ khí có thẻ sử dụng là Bomb nổ theo chiều dọc và ngang(4 vị trí ô đơn vị xung quanh Bomb) .Bomber có thể sử dụng Item bằng cách di chuyển vào vị trí của Item. Thông tin về chức năng của các Item được liệt kê như dưới đây:
-+ SpeedItem: Khi sử dụng Item này, Bomber sẽ được tăng vận tốc di chuyển.
-+ FlameItem : Item này giúp tăng phạm vi ảnh hưởng của Bomb khi nổ (độ dài các Flame lớn hơn)
-+BombItem: Item này giúp tăng số lượng Bomb có thể đặt thêm một.
+
+  SpeedItem: Khi sử dụng Item này, Bomber sẽ được tăng vận tốc di chuyển.
+  
+  FlameItem : Item này giúp tăng phạm vi ảnh hưởng của Bomb khi nổ (độ dài các Flame lớn hơn)
+  
+  BombItem: Item này giúp tăng số lượng Bomb có thể đặt thêm một.
 
 -	Kẻ địch sẽ bị tiêu diệt khi thuộc phạm vi Bomb nổ.
 
