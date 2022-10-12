@@ -4,14 +4,15 @@ import java.awt.*;
 
 public abstract class Weapon extends GameObject {
 
-    private double width;
-    private double height;
 
     private boolean isSeted;
 
     private long timeDelay;
     private long timeStart;
 
+    /**
+     * Constructor.
+     */
     public Weapon (double posX, double posY, GameWorld gameWorld) {
         super(posX, posY, gameWorld);
         fixPos();
@@ -19,27 +20,34 @@ public abstract class Weapon extends GameObject {
         this.timeStart = System.nanoTime();
     }
 
+    /**
+     * abstract method update.
+     */
     public abstract boolean update();
 
+    /**
+     * method fix position.
+     */
     public void fixPos() {
         int tilteSize = getGameWorld().getPhysicalMap().getTileSize();
 
         int x = (int) getPosX() / tilteSize;
-        setPosX(x * tilteSize + tilteSize / 2);
+        setPosX(x * tilteSize + tilteSize / 2.0);
 
         int y = (int) getPosY() / tilteSize;
-        setPosY(y * tilteSize + tilteSize / 2);
+        setPosY(y * tilteSize + tilteSize / 2.0);
     }
 
+    /**
+     * abstract method draw.
+     */
     public abstract void draw(Graphics2D g2);
 
-//    public Rectangle getBound() {
-//        Rectangle currentRect = new Rectangle();
-//        currentRect.x =
-//    }
 
 
-
+    /**
+     * Getter, setter.
+     */
     public void  setTimeDelay(long timeDelay) {
         this.timeDelay = timeDelay;
     }
